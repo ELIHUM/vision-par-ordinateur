@@ -1,7 +1,8 @@
-opencv-python==4.9.0.80
-numpy
+opencv-python
+numpy<2.0
 matplotlib
 pandas
 scikit-learn
+
 
 

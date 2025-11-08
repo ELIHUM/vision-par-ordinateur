@@ -1,0 +1,38 @@
+name: Vision Par Ordinateur - CI/CD
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build-test:
+    name:  Test du projet Vision
+    runs-on: ubuntu-latest
+
+    steps:
+      - name:  Récupération du code
+        uses: actions/checkout@v4
+
+      - name:  Installation de Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name:  Installation des dépendances
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name:  Vérification du code (tests)
+        run: |
+          python -m unittest discover -s tests -p "test_*.py"
+
+  deploy:
+    needs: build-test
+    runs-on: ubuntu-latest
+    if: success()
+    steps:
+      - name:  Déploiement automatique
+        run: echo "Déploiement réussi ! (à configurer selon ton hébergement)"

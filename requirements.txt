@@ -1,1 +1,7 @@
 opencv-python==4.9.0.80
+numpy
+matplotlib
+pandas
+scikit-learn
+
+
